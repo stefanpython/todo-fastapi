@@ -4,7 +4,7 @@ export default function Users() {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
-    fetch("http://127.0.0.1:8000/users/4") // Change the endpoint if needed
+    fetch("http://127.0.0.1:8000/users/2") // Change the endpoint if needed
       .then((res) => res.json())
       .then((data) => {
         console.log("Fetched data:", data); // Check the response data

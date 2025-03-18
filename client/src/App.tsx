@@ -1,11 +1,13 @@
 import "./App.css";
-import Users from "./components/Users";
+// import Users from "./components/Users";
+import TodoApp from "./components/TodoApp";
 
 function App() {
   return (
     <>
-      <h1 className="bg-amber-800 text-5xl">hello</h1>
-      <Users />
+      <div className="flex justify-center">
+        <TodoApp />
+      </div>
     </>
   );
 }
