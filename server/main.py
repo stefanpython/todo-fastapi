@@ -36,8 +36,9 @@ def update_todo(todo_index: int, todo: Todo):
         raise HTTPException(status_code=404, detail="Todo not found")
     
     # Update the task or completed status
-    todos[todo_index] = todo
-    return {"message": "Todo updated", "todo": todo}
+    todos[todo_index] = todo  # Update the todo in place
+    return todos  # Return the complete updated list
+
 
 @app.delete("/todos/{todo_index}/")
 def delete_todo(todo_index: int):
