@@ -53,6 +53,14 @@ export default function Register() {
         >
           Register
         </button>
+
+        <button
+          type="button"
+          onClick={() => navigate("/login")}
+          className="w-full mt-4 bg-gray-500 text-white p-2 rounded-lg hover:bg-gray-600"
+        >
+          Back to login
+        </button>
       </form>
     </div>
   );

@@ -11,8 +11,10 @@ export default function Login() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      await login(username, password);
+      await login(username, password); // Call the login function
+      console.log("Login successful, navigating to /"); // Debugging
       navigate("/");
+      window.location.href = "/";
     } catch (err) {
       console.error(err);
       setError("Invalid credentials");
@@ -53,7 +55,6 @@ export default function Login() {
         >
           Login
         </button>
-        {/* Add Register button */}
         <button
           type="button"
           onClick={() => navigate("/register")}
