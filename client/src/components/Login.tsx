@@ -53,6 +53,14 @@ export default function Login() {
         >
           Login
         </button>
+        {/* Add Register button */}
+        <button
+          type="button"
+          onClick={() => navigate("/register")}
+          className="w-full mt-4 bg-gray-500 text-white p-2 rounded-lg hover:bg-gray-600"
+        >
+          Create New Account
+        </button>
       </form>
     </div>
   );

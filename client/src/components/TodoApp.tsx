@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { getAuthHeaders, logout } from "../auth";
 
 interface Todo {
   task: string;
@@ -16,12 +17,20 @@ export default function TodoApp() {
   }, []);
 
   const fetchTodos = () => {
-    fetch("http://127.0.0.1:8000/todos/")
+    fetch("http://127.0.0.1:8000/todos/", {
+      headers: {
+        "Content-Type": "application/json",
+        ...getAuthHeaders(), // Spread the headers to ensure they are valid
+      },
+    })
       .then((res) => res.json())
-      .then((data) => {
-        setTodos(data);
-      })
+      .then((data) => setTodos(data))
       .catch((err) => console.error("Error fetching:", err));
+  };
+
+  const handleLogout = () => {
+    logout();
+    window.location.href = "/login";
   };
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -43,6 +52,7 @@ export default function TodoApp() {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        ...getAuthHeaders(), // Spread the headers to ensure they are valid
       },
       body: JSON.stringify(newTodo),
     })
@@ -67,6 +77,7 @@ export default function TodoApp() {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
+        ...getAuthHeaders(), // Spread the headers to ensure they are valid
       },
       body: JSON.stringify(updatedTodo),
     })
@@ -88,6 +99,10 @@ export default function TodoApp() {
   const handleDelete = (index: number) => {
     fetch(`http://127.0.0.1:8000/todos/${index}/`, {
       method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        ...getAuthHeaders(), // Spread the headers to ensure they are valid
+      },
     })
       .then((res) => res.json())
       .then(() => {
@@ -116,6 +131,7 @@ export default function TodoApp() {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
+        ...getAuthHeaders(), // Spread the headers to ensure they are valid
       },
       body: JSON.stringify(updatedTodo),
     })
@@ -129,9 +145,15 @@ export default function TodoApp() {
   return (
     <div className="bg-gray-100 flex flex-col items-center justify-center p-4">
       <div className="bg-white p-8 rounded-lg shadow-lg max-w-md w-full">
-        <h2 className="text-2xl font-semibold text-center text-gray-800 mb-6">
-          Todo List
-        </h2>
+        <div className="flex justify-between items-center mb-6">
+          <h2 className="text-2xl font-semibold text-gray-800">Todo List</h2>
+          <button
+            onClick={handleLogout}
+            className="p-2 bg-red-500 text-white rounded-lg hover:bg-red-600"
+          >
+            Logout
+          </button>
+        </div>
         <form onSubmit={handleSubmit} className="flex mb-6">
           <input
             type="text"

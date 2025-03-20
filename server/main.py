@@ -27,6 +27,10 @@ class User(BaseModel):
     full_name: Optional[str] = None
     disabled: Optional[bool] = False
 
+class UserRegistration(BaseModel):
+    username: str
+    password: str
+
 class UserInDB(User):
     hashed_password: str
 
@@ -40,6 +44,9 @@ class Token(BaseModel):
 
 class TokenData(BaseModel):
     username: Optional[str] = None
+
+
+
 
 app = FastAPI()
 
@@ -100,12 +107,12 @@ async def get_current_user(token: str = Depends(oauth2_scheme)):
 
 # Routes
 @app.post("/register")
-def register(username: str, password: str):
-    if username in fake_users_db:
+def register(user: UserRegistration):
+    if user.username in fake_users_db:
         raise HTTPException(status_code=400, detail="Username already registered")
-    hashed_password = get_password_hash(password)
-    fake_users_db[username] = {
-        "username": username,
+    hashed_password = get_password_hash(user.password)
+    fake_users_db[user.username] = {
+        "username": user.username,
         "hashed_password": hashed_password,
         "disabled": False,
     }
