@@ -1,54 +1,143 @@
-# React + TypeScript + Vite
+# Todo App 📝
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a simple **To-Do List** web application built for learning purposes. It features a **Vite + React + Tailwind CSS** frontend and a **FastAPI + Python** backend.
 
-Currently, two official plugins are available:
+## 🚀 Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Add, update, delete, and retrieve todos
+- In-memory storage (data is lost on server restart)
+- RESTful API with JSON responses
+- Modern frontend with React, Vite, and Tailwind CSS
+- Fast backend with FastAPI
 
-## Expanding the ESLint configuration
+## 🛠 Tech Stack
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- **Backend:** Python, FastAPI
+- **Frontend:** React, Vite, Tailwind CSS
+- **State Management:** React Hooks
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+## 📦 Installation
+
+### Backend Setup (FastAPI)
+
+1. Clone the repository:
+
+   ```sh
+   git clone https://github.com/stefanpython/todo-fastapi.git
+   cd todo-fastapi
+   ```
+
+2. Create a virtual environment and activate it:
+
+   ```sh
+   python -m venv venv
+   source venv/bin/activate  # On Windows: venv\Scripts\activate
+   ```
+
+3. Install dependencies:
+
+   ```sh
+   pip install fastapi uvicorn
+   ```
+
+4. Start the FastAPI server:
+
+   ```sh
+   uvicorn main:app --reload
+   ```
+
+5. The API will be available at:
+   ```
+   http://127.0.0.1:8000
+   ```
+
+### Frontend Setup (React + Vite)
+
+1. Navigate to the frontend folder:
+
+   ```sh
+   cd frontend
+   ```
+
+2. Install dependencies:
+
+   ```sh
+   npm install
+   ```
+
+3. Start the development server:
+
+   ```sh
+   npm run dev
+   ```
+
+4. Open the frontend in your browser:
+   ```
+   http://localhost:5173
+   ```
+
+## 📌 API Endpoints
+
+### Get all todos
+
+```http
+GET /todos
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Response:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+```json
+[{ "id": 1, "title": "Sample task", "completed": false }]
 ```
+
+### Get a single todo
+
+```http
+GET /todos/{id}
+```
+
+### Add a new todo
+
+```http
+POST /todos
+```
+
+Request body:
+
+```json
+{ "title": "New task" }
+```
+
+### Update a todo
+
+```http
+PUT /todos/{id}
+```
+
+Request body:
+
+```json
+{ "title": "Updated task", "completed": true }
+```
+
+### Delete a todo
+
+```http
+DELETE /todos/{id}
+```
+
+## 🏗 Contributing
+
+1. Fork the repository
+2. Create a new branch (`git checkout -b feature-branch`)
+3. Commit your changes (`git commit -m "Add new feature"`)
+4. Push to your branch (`git push origin feature-branch`)
+5. Open a pull request
+
+## 📜 License
+
+This project is open-source under the [MIT License](LICENSE).
+
+---
+
+💡 Happy coding! 🚀
