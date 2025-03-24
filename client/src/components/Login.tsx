@@ -11,9 +11,7 @@ export default function Login() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      await login(username, password); // Call the login function
-      console.log("Login successful, navigating to /"); // Debugging
-      navigate("/");
+      await login(username, password);
       window.location.href = "/";
     } catch (err) {
       console.error(err);
