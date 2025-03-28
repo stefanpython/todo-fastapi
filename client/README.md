@@ -1,143 +1,71 @@
-# Todo App 📝
+# Project: Next.js & FastAPI Todo App
 
-This is a simple **To-Do List** web application built for learning purposes. It features a **Vite + React + Tailwind CSS** frontend and a **FastAPI + Python** backend.
+This project is a simple Todo application built as part of my learning process. It features a frontend built with Next.js and Tailwind CSS, while the backend is implemented using FastAPI with Python. The application supports CRUD operations,todos, login and register that are stored in memory.
 
-## 🚀 Features
+## Features
 
-- Add, update, delete, and retrieve todos
-- In-memory storage (data is lost on server restart)
-- RESTful API with JSON responses
-- Modern frontend with React, Vite, and Tailwind CSS
-- Fast backend with FastAPI
+- **Next.js Frontend**: A modern, responsive UI built using React and Tailwind CSS.
+- **FastAPI Backend**: A lightweight and fast backend using Python and FastAPI.
+- **CRUD Operations**:
+  - Create a new todo
+  - Read existing todos
+  - Update a todo
+  - Delete a todo
+- **In-Memory Storage**: Todos are stored in memory for simplicity.
+- **User Authentication**:
+  - Register new users
+  - Login functionality
 
-## 🛠 Tech Stack
+## Technologies Used
 
-- **Backend:** Python, FastAPI
-- **Frontend:** React, Vite, Tailwind CSS
-- **State Management:** React Hooks
+### Frontend:
 
-## 📦 Installation
+- Next.js
+- Tailwind CSS
 
-### Backend Setup (FastAPI)
+### Backend:
 
-1. Clone the repository:
+- Python
+- FastAPI
 
-   ```sh
-   git clone https://github.com/stefanpython/todo-fastapi.git
-   cd todo-fastapi
-   ```
+## Setup Instructions
 
-2. Create a virtual environment and activate it:
+### Backend:
 
-   ```sh
-   python -m venv venv
-   source venv/bin/activate  # On Windows: venv\Scripts\activate
-   ```
-
-3. Install dependencies:
-
-   ```sh
-   pip install fastapi uvicorn
-   ```
-
-4. Start the FastAPI server:
-
-   ```sh
+1. Install dependencies:
+   \`\`\`sh
+   npm install fastapi uvicorn
+   \`\`\`
+2. Run the FastAPI server:
+   \`\`\`sh
    uvicorn main:app --reload
-   ```
+   \`\`\`
 
-5. The API will be available at:
-   ```
-   http://127.0.0.1:8000
-   ```
+### Frontend:
 
-### Frontend Setup (React + Vite)
-
-1. Navigate to the frontend folder:
-
-   ```sh
-   cd frontend
-   ```
-
-2. Install dependencies:
-
-   ```sh
+1. Install dependencies:
+   \`\`\`sh
    npm install
-   ```
-
-3. Start the development server:
-
-   ```sh
+   \`\`\`
+2. Run the Next.js development server:
+   \`\`\`sh
    npm run dev
-   ```
+   \`\`\`
 
-4. Open the frontend in your browser:
-   ```
-   http://localhost:5173
-   ```
+## API Endpoints
 
-## 📌 API Endpoints
+- \`GET /todos\` - Retrieve all todos
+- \`POST /todos\` - Create a new todo
+- \`PUT /todos/{id}\` - Update a specific todo
+- \`DELETE /todos/{id}\` - Delete a specific todo
+- \`POST /register\` - Register a new user
+- \`POST /login\` - User login
 
-### Get all todos
+## Notes
 
-```http
-GET /todos
-```
+- This project is part of my learning journey and does not include database persistence.
+- Improvements such as authentication and persistent storage can be added in the future.
 
-Response:
+## License
 
-```json
-[{ "id": 1, "title": "Sample task", "completed": false }]
-```
-
-### Get a single todo
-
-```http
-GET /todos/{id}
-```
-
-### Add a new todo
-
-```http
-POST /todos
-```
-
-Request body:
-
-```json
-{ "title": "New task" }
-```
-
-### Update a todo
-
-```http
-PUT /todos/{id}
-```
-
-Request body:
-
-```json
-{ "title": "Updated task", "completed": true }
-```
-
-### Delete a todo
-
-```http
-DELETE /todos/{id}
-```
-
-## 🏗 Contributing
-
-1. Fork the repository
-2. Create a new branch (`git checkout -b feature-branch`)
-3. Commit your changes (`git commit -m "Add new feature"`)
-4. Push to your branch (`git push origin feature-branch`)
-5. Open a pull request
-
-## 📜 License
-
-This project is open-source under the [MIT License](LICENSE).
-
----
-
-💡 Happy coding! 🚀
+This project is open-source and free to use.
